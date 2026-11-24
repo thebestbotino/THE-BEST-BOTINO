@@ -1,0 +1,711 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090b10">
+  <meta name="description" content="THE BEST BOTINO - Counter-Strike 1.6 Gaming Community">
+  <title>THE BEST BOTINO | Gaming Community</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Changa:wght@400;500;600;700;800&family=Rajdhani:wght@500;600;700&display=swap');
+
+    :root {
+      --bg: #090b10;
+      --panel: #11151e;
+      --panel2: #171d28;
+      --red: #ef3340;
+      --red2: #ff5964;
+      --text: #f4f5f7;
+      --muted: #929baa;
+      --border: rgba(255,255,255,.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Changa', sans-serif;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    button { font: inherit; cursor: pointer; }
+
+    .container {
+      width: min(1150px, 92%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(9,11,16,.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--red); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: .2s;
+    }
+
+    nav a:hover { color: white; }
+
+    .language {
+      display: flex;
+      gap: 5px;
+      direction: ltr;
+    }
+
+    .language button {
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 12px;
+    }
+
+    .language button.active {
+      background: var(--red);
+      color: white;
+      border-color: var(--red);
+    }
+
+    .hero {
+      position: relative;
+      min-height: 550px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(90deg, rgba(9,11,16,.95), rgba(9,11,16,.72)),
+        url('https://images.unsplash.com/photo-1542751371-adc38448a05e?w=1800')
+        center/cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 140px;
+      background: linear-gradient(transparent, var(--bg));
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 90px 0 120px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red2);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      direction: ltr;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 25px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    h1 {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: clamp(43px, 8vw, 83px);
+      line-height: .98;
+      margin: 20px 0;
+      direction: ltr;
+      text-align: right;
+      letter-spacing: 1px;
+    }
+
+    h1 span { color: var(--red); }
+
+    .hero p {
+      color: #c1c7d0;
+      max-width: 520px;
+      line-height: 2;
+      font-size: 16px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 22px;
+      border-radius: 7px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: .2s;
+    }
+
+    .btn-primary {
+      background: var(--red);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--red2);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border-color: rgba(255,255,255,.22);
+      background: rgba(255,255,255,.04);
+    }
+
+    .btn-outline:hover { background: rgba(255,255,255,.1); }
+
+    .section { padding: 65px 0; }
+
+    .section-heading {
+      margin-bottom: 30px;
+    }
+
+    .section-heading small {
+      color: var(--red);
+      font-weight: 700;
+      letter-spacing: 2px;
+      direction: ltr;
+      display: inline-block;
+    }
+
+    .section-heading h2 {
+      font-size: 30px;
+      margin-top: 5px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .server-card {
+      background: linear-gradient(135deg, #171d28, #10141c);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .server-name {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 27px;
+      font-weight: 700;
+      direction: ltr;
+      text-align: right;
+    }
+
+    .server-name span { color: var(--red); }
+
+    .server-description {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 8px 0 20px;
+    }
+
+    .ip-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: #090c12;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 11px 14px;
+      direction: ltr;
+    }
+
+    .ip-box code {
+      font-size: 16px;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .copy-btn {
+      border: 0;
+      background: var(--red);
+      color: white;
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 12px;
+    }
+
+    .server-stats {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      background: rgba(255,255,255,.035);
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 17px;
+    }
+
+    .stat strong {
+      display: block;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 25px;
+      direction: ltr;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .tracker-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 17px;
+      line-height: 1.8;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 17px;
+    }
+
+    .feature {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 25px;
+      transition: .25s;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      border-color: rgba(239,51,64,.55);
+    }
+
+    .feature-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      background: rgba(239,51,64,.12);
+      color: var(--red);
+      border-radius: 9px;
+      font-size: 21px;
+      margin-bottom: 17px;
+    }
+
+    .feature h3 { margin-bottom: 7px; font-size: 18px; }
+
+    .feature p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    .community {
+      background: linear-gradient(120deg, #19111a, #11151e);
+      border: 1px solid rgba(239,51,64,.2);
+      border-radius: 14px;
+      padding: 35px;
+      text-align: center;
+    }
+
+    .community h2 { font-size: 27px; margin-bottom: 8px; }
+
+    .community p {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    footer strong { color: white; }
+
+    @media(max-width: 800px) {
+      nav { display: none; }
+      .server-card { grid-template-columns: 1fr; }
+      .cards { grid-template-columns: 1fr; }
+      .hero { min-height: 490px; }
+      .hero-content { padding: 75px 0 110px; }
+    }
+
+    @media(max-width: 480px) {
+      .navbar { min-height: 65px; }
+      .logo { font-size: 20px; }
+      .language button { padding: 4px 6px; }
+      .server-card { padding: 18px; }
+      .server-name { font-size: 22px; }
+      .ip-box code { font-size: 13px; }
+      .section { padding: 48px 0; }
+      .community { padding: 25px 17px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a class="logo" href="#">THE BEST <span>BOTINO</span></a>
+
+    <nav>
+      <a href="#home" data-i18n="navHome">الرئيسية</a>
+      <a href="#server" data-i18n="navServer">السيرفر</a>
+      <a href="#features" data-i18n="navFeatures">المميزات</a>
+      <a href="#community" data-i18n="navCommunity">المجتمع</a>
+    </nav>
+
+    <div class="language">
+      <button class="active" data-lang="ar">AR</button>
+      <button data-lang="fr">FR</button>
+      <button data-lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="hero-content">
+        <div class="eyebrow">COUNTER-STRIKE 1.6 COMMUNITY</div>
+
+        <h1>THE BEST <span>BOTINO</span></h1>
+
+        <p data-i18n="heroText">
+          مرحباً بك في مجتمع THE BEST BOTINO.
+          انضم إلى اللاعبين واكتشف أجواء اللعب والتحدي.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="steam://connect/82.47.171.126:27015"
+             data-i18n="joinServer">▶ ادخل إلى السيرفر</a>
+
+          <a class="btn btn-outline" href="https://dsc.gg/botino"
+             target="_blank" rel="noopener" data-i18n="joinDiscord">
+            مجتمع Discord
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="server">
+    <div class="container">
+      <div class="section-heading">
+        <small>GAME SERVER</small>
+        <h2 data-i18n="serverTitle">معلومات السيرفر</h2>
+        <p data-i18n="serverSubtitle">كل ما تحتاجه للانضمام إلى مجتمعنا.</p>
+      </div>
+
+      <div class="server-card">
+        <div>
+          <div class="server-name">
+            THE BEST <span>BOTINO</span>
+          </div>
+
+          <p class="server-description">
+            Counter-Strike 1.6 — Public Server
+          </p>
+
+          <div class="ip-box">
+            <code id="serverIP">82.47.171.126:27015</code>
+            <button class="copy-btn" id="copyIP" data-i18n="copy">
+              نسخ IP
+            </button>
+          </div>
+
+          <p class="tracker-note" data-i18n="trackerNote">
+            للحصول على حالة السيرفر وعدد اللاعبين الحالي،
+            افتح صفحة التتبع الرسمية.
+          </p>
+
+          <a class="btn btn-outline"
+             style="margin-top:14px"
+             href="https://www.gametracker.rs/server_info/82.47.171.126:27015"
+             target="_blank" rel="noopener"
+             data-i18n="viewTracker">
+            عرض السيرفر على GameTracker ↗
+          </a>
+        </div>
+
+        <div class="server-stats">
+          <div class="stat">
+            <strong>32</strong>
+            <span data-i18n="maxPlayers">الحد الأقصى للاعبين</span>
+          </div>
+
+          <div class="stat">
+            <strong>CS 1.6</strong>
+            <span data-i18n="game">اللعبة</span>
+          </div>
+
+          <div class="stat">
+            <strong>Dust 2</strong>
+            <span data-i18n="favoriteMap">الخريطة المفضلة</span>
+          </div>
+
+          <div class="stat">
+            <strong>24/7</strong>
+            <span data-i18n="community">مجتمع اللاعبين</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="container">
+      <div class="section-heading">
+        <small>OUR COMMUNITY</small>
+        <h2 data-i18n="featuresTitle">اكتشف مجتمعنا</h2>
+        <p data-i18n="featuresSubtitle">مساحة تجمع اللاعبين والتواصل والمنافسة.</p>
+      </div>
+
+      <div class="cards">
+        <article class="feature">
+          <div class="feature-icon">🎮</div>
+          <h3 data-i18n="feature1Title">سيرفر CS 1.6</h3>
+          <p data-i18n="feature1Text">
+            انضم إلى سيرفر THE BEST BOTINO والعب مع المجتمع.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">🏆</div>
+          <h3 data-i18n="feature2Title">ترتيب اللاعبين</h3>
+          <p data-i18n="feature2Text">
+            قسم مخصص لإحصائيات وترتيب اللاعبين، سيتم ربطه لاحقاً بمصدر بيانات موثوق.
+          </p>
+        </article>
+
+        <article class="feature">
+          <div class="feature-icon">⭐</div>
+          <h3 data-i18n="feature3Title">VIP و Admin</h3>
+          <p data-i18n="feature3Text">
+            تعرف على العضويات والخدمات المتاحة داخل مجتمعنا.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="community">
+    <div class="container">
+      <div class="community">
+        <h2 data-i18n="communityTitle">انضم إلى مجتمع BOTINO</h2>
+        <p data-i18n="communityText">
+          تابع أخبار السيرفر وتواصل مع أعضاء المجتمع.
+        </p>
+
+        <div class="actions" style="justify-content:center">
+          <a class="btn btn-primary" href="https://dsc.gg/botino"
+             target="_blank" rel="noopener">Discord</a>
+
+          <a class="btn btn-outline"
+             href="https://www.facebook.com/groups/706537014401734"
+             target="_blank" rel="noopener">Facebook</a>
+
+          <a class="btn btn-outline"
+             href="https://www.youtube.com/@botino20"
+             target="_blank" rel="noopener">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <strong>THE BEST BOTINO</strong>
+    <p>© <span id="year"></span> — All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const translations = {
+    ar: {
+      dir: "rtl",
+      navHome: "الرئيسية",
+      navServer: "السيرفر",
+      navFeatures: "المميزات",
+      navCommunity: "المجتمع",
+      heroText: "مرحباً بك في مجتمع THE BEST BOTINO. انضم إلى اللاعبين واكتشف أجواء اللعب والتحدي.",
+      joinServer: "▶ ادخل إلى السيرفر",
+      joinDiscord: "مجتمع Discord",
+      serverTitle: "معلومات السيرفر",
+      serverSubtitle: "كل ما تحتاجه للانضمام إلى مجتمعنا.",
+      copy: "نسخ IP",
+      trackerNote: "للحصول على حالة السيرفر وعدد اللاعبين الحالي، افتح صفحة التتبع الرسمية.",
+      viewTracker: "عرض السيرفر على GameTracker ↗",
+      maxPlayers: "الحد الأقصى للاعبين",
+      game: "اللعبة",
+      favoriteMap: "الخريطة المفضلة",
+      community: "مجتمع اللاعبين",
+      featuresTitle: "اكتشف مجتمعنا",
+      featuresSubtitle: "مساحة تجمع اللاعبين والتواصل والمنافسة.",
+      feature1Title: "سيرفر CS 1.6",
+      feature1Text: "انضم إلى سيرفر THE BEST BOTINO والعب مع المجتمع.",
+      feature2Title: "ترتيب اللاعبين",
+      feature2Text: "قسم مخصص لإحصائيات وترتيب اللاعبين، سيتم ربطه لاحقاً بمصدر بيانات موثوق.",
+      feature3Title: "VIP و Admin",
+      feature3Text: "تعرف على العضويات والخدمات المتاحة داخل مجتمعنا.",
+      communityTitle: "انضم إلى مجتمع BOTINO",
+      communityText: "تابع أخبار السيرفر وتواصل مع أعضاء المجتمع."
+    },
+    fr: {
+      dir: "ltr",
+      navHome: "Accueil",
+      navServer: "Serveur",
+      navFeatures: "Fonctionnalités",
+      navCommunity: "Communauté",
+      heroText: "Bienvenue dans la communauté THE BEST BOTINO. Rejoignez les joueurs et découvrez notre univers gaming.",
+      joinServer: "▶ Rejoindre le serveur",
+      joinDiscord: "Communauté Discord",
+      serverTitle: "Informations du serveur",
+      serverSubtitle: "Tout ce qu'il faut pour rejoindre notre communauté.",
+      copy: "Copier IP",
+      trackerNote: "Pour consulter le statut et le nombre actuel de joueurs, visitez la page officielle de suivi.",
+      viewTracker: "Voir sur GameTracker ↗",
+      maxPlayers: "Joueurs maximum",
+      game: "Jeu",
+      favoriteMap: "Carte préférée",
+      community: "Communauté",
+      featuresTitle: "Découvrez notre communauté",
+      featuresSubtitle: "Un espace pour jouer, communiquer et partager.",
+      feature1Title: "Serveur CS 1.6",
+      feature1Text: "Rejoignez le serveur THE BEST BOTINO et jouez avec la communauté.",
+      feature2Title: "Classement des joueurs",
+      feature2Text: "Une section dédiée aux statistiques et classements sera connectée à une source fiable.",
+      feature3Title: "VIP et Admin",
+      feature3Text: "Découvrez les abonnements et services disponibles.",
+      communityTitle: "Rejoignez la communauté BOTINO",
+      communityText: "Suivez les actualités du serveur et échangez avec les membres."
+    },
+    en: {
+      dir: "ltr",
+      navHome: "Home",
+      navServer: "Server",
+      navFeatures: "Features",
+      navCommunity: "Community",
+      heroText: "Welcome to THE BEST BOTINO community. Join the players and discover our gaming experience.",
+      joinServer: "▶ Join the Server",
+      joinDiscord: "Discord Community",
+      serverTitle: "Server Information",
+      serverSubtitle: "Everything you need to join our community.",
+      copy: "Copy IP",
+      trackerNote: "To check the server status and current player count, visit the official tracking page.",
+      viewTracker: "View on GameTracker ↗",
+      maxPlayers: "Maximum Players",
+      game: "Game",
+      favoriteMap: "Favorite Map",
+      community: "Player Community",
+      featuresTitle: "Discover Our Community",
+      featuresSubtitle: "A place to play, communicate and compete.",
+      feature1Title: "CS 1.6 Server",
+      feature1Text: "Join THE BEST BOTINO server and play with the community.",
+      feature2Title: "Player Rankings",
+      feature2Text: "A dedicated player statistics and rankings section will be connected to a trusted data source.",
+      feature3Title: "VIP and Admin",
+      feature3Text: "Discover the memberships and services available.",
+      communityTitle: "Join the BOTINO Community",
+      communityText: "Follow server news and connect with community members."
+    }
+  };
+
+  document.querySelectorAll("[data-lang]").forEach(button => {
+    button.addEventListener("click", () => {
+      const lang = button.dataset.lang;
+      const content = translations[lang];
+
+      document.documentElement.lang = lang;
+      document.documentElement.dir = content.dir;
+
+      document.querySelectorAll("[data-i18n]").forEach(element => {
+        const key = element.dataset.i18n;
+        if (content[key]) element.textContent = content[key];
+      });
+
+      document.querySelectorAll("[data-lang]").forEach(item => {
+        item.classList.toggle("active", item === button);
+      });
+    });
+  });
+
+  document.getElementById("copyIP").addEventListener("click", async () => {
+    const ip = document.getElementById("serverIP").textContent;
+    const button = document.getElementById("copyIP");
+
+    try {
+      await navigator.clipboard.writeText(ip);
+      button.textContent = "✓";
+      setTimeout(() => button.textContent =
+        translations[document.documentElement.lang].copy, 1600);
+    } catch {
+      button.textContent = ip;
+    }
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
